@@ -25,5 +25,12 @@ namespace MoodAnalysisTestProject
             string result = analyser.AnalyseMood("I am Happy");
             Assert.AreEqual("HAPPY", result);
         }
+
+        [Test]
+        public void Test_For_Null_Response()
+        {
+            string result = analyser.AnalyseMood(null);
+            Assert.AreEqual("HAPPY", result);
+        }
     }
 }
