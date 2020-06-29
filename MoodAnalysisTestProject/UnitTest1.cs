@@ -1,18 +1,22 @@
+using MoodAnalysis;
 using NUnit.Framework;
 
 namespace MoodAnalysisTestProject
 {
     public class Tests
     {
-        [SetUp]
+        MoodAnalyser analyser;
+        [OneTimeSetUp]
         public void Setup()
         {
+            analyser = new MoodAnalyser();
         }
 
         [Test]
-        public void Test1()
+        public void Test_For_Sad_Mood()
         {
-            Assert.Pass();
+            string result = analyser.AnalyseMood("I Am So Sad");
+            Assert.AreEqual("SAD", result);
         }
     }
 }

@@ -2,11 +2,23 @@
 
 namespace MoodAnalysis
 {
-    class Program
+    public class MoodAnalyser
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+        }
+
+        public string AnalyseMood(string message)
+        {
+            if (message.ToLower().Contains("sad"))
+            {
+                return "SAD";
+            }
+            else
+            {
+                return "Not Sad For Sure";
+            }
         }
     }
 }
