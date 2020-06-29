@@ -15,9 +15,13 @@ namespace MoodAnalysis
             {
                 return "SAD";
             }
+            else if(message.ToLower().Contains("happy"))
+            {
+                return "HAPPY";
+            }
             else
             {
-                return "Not Sad For Sure";
+                return "Not Sure About Mood";
             }
         }
     }
