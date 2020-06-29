@@ -4,6 +4,7 @@ namespace MoodAnalysis
 {
     public class MoodAnalyser
     {
+ 
         static void Main(string[] args)
         {
         }
@@ -12,11 +13,16 @@ namespace MoodAnalysis
 
         }
 
+
         public string AnalyseMood(string message)
         {
             try
             {
-                if (message.ToLower().Contains("sad"))
+                if(message.Length == 0)
+                {
+                    throw new MoodAnalyserException("Message Can Not Be Empty");
+                }
+                else if (message.ToLower().Contains("sad"))
                 {
                     return "SAD";
                 }
@@ -31,7 +37,7 @@ namespace MoodAnalysis
             }
             catch (NullReferenceException e)
             {
-                return "HAPPY";
+                throw new MoodAnalyserException("Null Pointer");
             }
             
         }

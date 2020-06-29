@@ -29,8 +29,28 @@ namespace MoodAnalysisTestProject
         [Test]
         public void Test_For_Null_Response()
         {
-            string result = analyser.AnalyseMood(null);
-            Assert.AreEqual("HAPPY", result);
+            try
+            {
+                analyser.AnalyseMood(null);
+            }
+            catch (MoodAnalyserException e)
+            {
+
+                Assert.AreEqual("Null Pointer", e.Message);
+            }
+        }
+
+        [Test]
+        public void Test_For_Empty_Message()
+        {
+            try
+            {
+                analyser.AnalyseMood("");
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual ("Message Can Not Be Empty", e.Message);
+            }
         }
     }
 }
