@@ -4,9 +4,9 @@ namespace MoodAnalysis
 {
     public class MoodAnalyser
     {
-        static void Main(string[] args)
+        public MoodAnalyser()
         {
-            
+
         }
 
         public string AnalyseMood(string message)
