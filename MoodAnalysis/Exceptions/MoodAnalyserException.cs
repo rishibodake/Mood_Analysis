@@ -9,7 +9,7 @@ namespace MoodAnalysis
         public string message;
        public enum TypeOfException
         {
-            NULL_POINTER_EXCEPTION,EMPTY_STRING_EXCEPTION
+            NULL_POINTER_EXCEPTION,EMPTY_STRING_EXCEPTION, NO_CLASS_FOUND
         }
 
 

@@ -59,7 +59,7 @@ namespace MoodAnalysisTestProject
         {
             MoodAnalyserFactory moodFactory = new MoodAnalyserFactory();
             object expected = new MoodAnalyser();
-            object returnObject = moodFactory.GetInstance("MoodAnalysis", "MoodAnalysis");
+            object returnObject = moodFactory.GetInstance("MoodAnalyser", "MoodAnalyser");
             expected.Equals(returnObject);
             Assert.AreEqual(expected, returnObject);
         }
