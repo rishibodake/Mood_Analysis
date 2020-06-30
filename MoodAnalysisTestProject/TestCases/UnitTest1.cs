@@ -52,5 +52,16 @@ namespace MoodAnalysisTestProject
                 Assert.AreEqual (MoodAnalyserException.TypeOfException.EMPTY_STRING_EXCEPTION,e.exceptionType);
             }
         }
+
+
+        [Test]
+        public void Mood_Analyser_Object_Checker()
+        {
+            MoodAnalyserFactory moodFactory = new MoodAnalyserFactory();
+            object expected = new MoodAnalyser();
+            object returnObject = moodFactory.GetInstance("MoodAnalysis", "MoodAnalysis");
+            expected.Equals(returnObject);
+            Assert.AreEqual(expected, returnObject);
+        }
     }
 }
