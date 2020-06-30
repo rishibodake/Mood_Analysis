@@ -20,7 +20,11 @@ namespace MoodAnalysis
             {
                 if(message.Length == 0)
                 {
-                    throw new MoodAnalyserException("Message Can Not Be Empty");
+                    throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.EMPTY_STRING_EXCEPTION, "Message Can Not Be Empty");
+                }
+                else if(message == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NULL_POINTER_EXCEPTION, "Null Value");
                 }
                 else if (message.ToLower().Contains("sad"))
                 {
@@ -35,9 +39,9 @@ namespace MoodAnalysis
                     return "Not Sure About Mood";
                 }
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
-                throw new MoodAnalyserException("Null Pointer");
+               return e.Message;
             }
             
         }

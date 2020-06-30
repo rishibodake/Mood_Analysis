@@ -36,7 +36,7 @@ namespace MoodAnalysisTestProject
             catch (MoodAnalyserException e)
             {
 
-                Assert.AreEqual("Null Pointer", e.Message);
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NULL_POINTER_EXCEPTION, e.exceptionType);
             }
         }
 
@@ -49,7 +49,7 @@ namespace MoodAnalysisTestProject
             }
             catch(MoodAnalyserException e)
             {
-                Assert.AreEqual ("Message Can Not Be Empty", e.Message);
+                Assert.AreEqual (MoodAnalyserException.TypeOfException.EMPTY_STRING_EXCEPTION,e.exceptionType);
             }
         }
     }
