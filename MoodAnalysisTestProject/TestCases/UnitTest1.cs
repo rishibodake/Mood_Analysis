@@ -65,5 +65,20 @@ namespace MoodAnalysisTestProject
             Assert.IsInstanceOf(typeof(MoodAnalyser), constructor);
         }
 
+        [Test]
+        public void Improper_Class_Haandeling()
+        {
+            try
+            {               
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                ConstructorInfo constrInfo = factory.ConstructorChecker();
+                object constructor = factory.InstanceChecker("Mood", constrInfo);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, e.exceptionType);
+            }
+        }
+
     }
 }

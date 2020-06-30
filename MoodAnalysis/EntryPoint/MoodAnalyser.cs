@@ -7,16 +7,12 @@ namespace MoodAnalysis
     {
            
         static void Main(string[] args)
-        {
-            
-
+        {            
         }
         public MoodAnalyser()
         {
 
-        }
-       
-
+        }     
         public string AnalyseMood(string message)
         {
             try
@@ -45,8 +41,7 @@ namespace MoodAnalysis
             catch (Exception e)
             {
                return e.Message;
-            }
-            
+            }           
         }
     }
 }
