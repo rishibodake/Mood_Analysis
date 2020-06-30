@@ -1,18 +1,21 @@
-﻿using System;
+﻿using MoodAnalysis.FactoryPattern;
+using System;
 
 namespace MoodAnalysis
 {
     public class MoodAnalyser
     {
- 
+           
         static void Main(string[] args)
         {
+            
+
         }
         public MoodAnalyser()
         {
 
         }
-
+       
 
         public string AnalyseMood(string message)
         {

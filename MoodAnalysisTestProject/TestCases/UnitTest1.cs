@@ -1,9 +1,12 @@
 using MoodAnalysis;
+using MoodAnalysis.FactoryPattern;
 using NUnit.Framework;
+using System;
+using System.Reflection;
 
 namespace MoodAnalysisTestProject
 {
-    public class Tests
+    public class MoodCheckingTest
     {
         MoodAnalyser analyser;
         [OneTimeSetUp]
@@ -53,15 +56,14 @@ namespace MoodAnalysisTestProject
             }
         }
 
-
         [Test]
-        public void Mood_Analyser_Object_Checker()
-        {
-            MoodAnalyserFactory moodFactory = new MoodAnalyserFactory();
-            object expected = new MoodAnalyser();
-            object returnObject = moodFactory.GetInstance("MoodAnalyser", "MoodAnalyser");
-            expected.Equals(returnObject);
-            Assert.AreEqual(expected, returnObject);
+        public void Mood_Analyser_Contructor_Checker()
+        {          
+            MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+            ConstructorInfo constrInfo = factory.ConstructorChecker();
+            object constructor = factory.InstanceChecker("MoodAnalyser", constrInfo);
+            Assert.IsInstanceOf(typeof(MoodAnalyser), constructor);
         }
+
     }
 }
