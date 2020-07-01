@@ -145,6 +145,15 @@ namespace MoodAnalysisTestProject
             }
         }
 
+        [Test]
+        public void Call_Method_Using_Reflection_Test()
+        {
+            string latestMood = "happy";
+            MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+            object genratedObject = factory.CallTheMethod(mood);
+            Assert.AreEqual(latestMood, genratedObject);
+        }
+
 
     }
 }
