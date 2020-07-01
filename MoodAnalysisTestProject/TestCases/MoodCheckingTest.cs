@@ -103,7 +103,15 @@ namespace MoodAnalysisTestProject
             }
         }
 
-       
+        [Test]
+        public void Mood_Analyser_Parameterised_Constructor_Check_Test()
+        {
+            MoodAnalyser analysis = new MoodAnalyser("here i am in sad mood");
+            MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+            ConstructorInfo constrInfo = factory.ConstructorCreator(1);
+            object instanceOfClass = factory.InstanceCreator("MoodAnalyser", constrInfo, "here i am in sad mood ");
+            Assert.IsInstanceOf(typeof(MoodAnalyser), instanceOfClass);
+        }
 
 
     }
