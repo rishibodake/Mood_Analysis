@@ -13,6 +13,10 @@ namespace MoodAnalysis
         {
 
         }     
+        public MoodAnalyser(string message)
+        {
+            
+        }
         public string AnalyseMood(string message)
         {
             try
@@ -38,10 +42,11 @@ namespace MoodAnalysis
                     return "Not Sure About Mood";
                 }
             }
-            catch (Exception e)
+            
+            catch(Exception e)
             {
-               return e.Message;
-            }           
+                return e.Message;
+            }
         }
     }
 }

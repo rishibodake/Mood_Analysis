@@ -6,11 +6,11 @@ namespace MoodAnalysis
 {
     public class MoodAnalyserException : Exception
     {
-        public string message;
+       public string message;
        public enum TypeOfException
-        {
-            NULL_POINTER_EXCEPTION,EMPTY_STRING_EXCEPTION, NO_CLASS_FOUND, NO_CONSTRUCTOR_FOUND, UNABLE_TO_CREATE_OBJECT
-                
+       {
+            NULL_POINTER_EXCEPTION,EMPTY_STRING_EXCEPTION, NO_CLASS_FOUND, NO_CONSTRUCTOR_FOUND,OBJECT_NOT_CREATED
+
         }
 
 
@@ -19,7 +19,7 @@ namespace MoodAnalysis
 
         public MoodAnalyserException(TypeOfException typeOfException, string message) : base(message)
         {
-            this.exceptionType = exceptionType;
+            
             this.message = message;
         }
 

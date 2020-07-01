@@ -19,14 +19,16 @@ namespace MoodAnalysisTestProject
         public void Test_For_Sad_Mood()
         {
             string result = analyser.AnalyseMood("I Am So Sad ");
-            Assert.AreEqual("SAD", result);
+            string mood = "SAD";
+            Assert.AreEqual(mood, result);
         }
 
         [Test]
         public void Test_For_Happy_Mood()
         {
             string result = analyser.AnalyseMood("I am Happy");
-            Assert.AreEqual("HAPPY", result);
+            string mood = "HAPPY";
+            Assert.AreEqual(mood, result);
         }
 
         [Test]
@@ -34,7 +36,9 @@ namespace MoodAnalysisTestProject
         {
             try
             {
-                analyser.AnalyseMood(null);
+                string result = analyser.AnalyseMood(null);
+                string mood = "HAPPY";
+               // Assert.AreEqual(mood, result);
             }
             catch (MoodAnalyserException e)
             {
@@ -48,7 +52,9 @@ namespace MoodAnalysisTestProject
         {
             try
             {
-                analyser.AnalyseMood("");
+                string result = analyser.AnalyseMood("");
+                string mood = "HAPPY";
+                //Assert.AreEqual(mood, result);
             }
             catch(MoodAnalyserException e)
             {
@@ -60,9 +66,9 @@ namespace MoodAnalysisTestProject
         public void Mood_Analyser_Contructor_Checker()
         {          
             MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-            ConstructorInfo constrInfo = factory.ConstructorChecker();
-            object constructor = factory.InstanceChecker("MoodAnalyser", constrInfo);
-            Assert.IsInstanceOf(typeof(MoodAnalyser), constructor);
+            ConstructorInfo constrInfo = factory.ConstructorCreator();
+            object instanceOfClass = factory.InstanceCreator("MoodAnalyser", constrInfo);
+            Assert.IsInstanceOf(typeof(MoodAnalyser), instanceOfClass);
         }
 
         [Test]
@@ -71,14 +77,32 @@ namespace MoodAnalysisTestProject
             try
             {               
                 MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-                ConstructorInfo constrInfo = factory.ConstructorChecker();
-                object constructor = factory.InstanceChecker("Mood", constrInfo);
+                ConstructorInfo constrInfo = factory.ConstructorCreator();
+                object instanceOfClass = factory.InstanceCreator("Mood", constrInfo);
+                //Assert.IsInstanceOf(typeof(MoodAnalyser), instanceOfClass);
             }
             catch(MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, e.exceptionType);
             }
         }
+
+        [Test]
+        public void Improper_Constructor_Haandeling()
+        {
+            try
+            {
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                ConstructorInfo constrInfo = factory.ConstructorCreator("MoodAnalysis.MoodAnalyser");
+                object instanceOfClass = factory.InstanceCreator("MoodAnalyser", constrInfo);
+                //Assert.IsInstanceOf(typeof(MoodAnalyser), instanceOfClass);
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CONSTRUCTOR_FOUND, e.exceptionType);
+            }
+        }
+
 
     }
 }

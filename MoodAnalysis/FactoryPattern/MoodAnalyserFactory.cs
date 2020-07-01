@@ -6,21 +6,35 @@ namespace MoodAnalysis.FactoryPattern
 {
     public class MoodAnalyserFactory<E>
     {
-        public ConstructorInfo ConstructorChecker()
+        public ConstructorInfo ConstructorCreator()
         {
             try
             {
-                Type type = typeof(E);                
+                Type type = typeof(E);               
                 ConstructorInfo[] constructor = type.GetConstructors();
                 return constructor[0];
             }
-            catch (Exception e)
+            catch (MoodAnalyserException)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
             }
         }
 
-        public object InstanceChecker(string className, ConstructorInfo constructor)
+        public ConstructorInfo ConstructorCreator(string className)
+        {
+            try
+            {
+                Type type = Type.GetType(className);
+                ConstructorInfo[] constructor = type.GetConstructors();
+                return constructor[1];
+            }
+            catch (MoodAnalyserException)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
+            }
+        }
+
+        public object InstanceCreator(string className, ConstructorInfo constructor)
         {
             try
             {
@@ -33,13 +47,15 @@ namespace MoodAnalysis.FactoryPattern
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CONSTRUCTOR_FOUND, "No such method found");
                 }
-                E ReturnObject = Activator.CreateInstance<E>();               
-                return ReturnObject;
+                E reflectionGenratedObject = Activator.CreateInstance<E>();               
+                return reflectionGenratedObject;
             }
             catch (MoodAnalyserException e)
             {
+              
                 return e.Message;
             }
+            
         }
     }
 }
