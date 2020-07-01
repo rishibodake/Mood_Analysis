@@ -106,11 +106,36 @@ namespace MoodAnalysis.FactoryPattern
             }
         }
 
+       
         public object CallTheMethod(string currntMood)
-        {
+        {           
             MoodAnalyser analyser = new MoodAnalyser(currntMood);
             object generatedObject = analyser.AnalyseMood();
             return generatedObject;
+        }
+
+        public MethodInfo CreateMethod()
+        {
+            try
+            {
+                Type type = typeof(E);
+                MethodInfo[] method = type.GetMethods();
+                return method[0];
+            }
+            catch (MoodAnalyserException)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, "No such METHOD found");
+            }
+        }
+
+        public object MethodChecker(MethodInfo methodInfo)
+        {
+            Type type = typeof(E);
+            if(methodInfo != type.GetMethods()[0])
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, "No Method Found");
+            }
+            return null;
         }
 
     }

@@ -160,6 +160,20 @@ namespace MoodAnalysisTestProject
             Assert.AreEqual(latestMood, genratedObject);
         }
 
+        [Test]
+        public void Improper_Method_Handeling()
+        {
+            try
+            {
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                MethodInfo methodInfo = factory.CreateMethod();
+                object returndObject = factory.MethodChecker(methodInfo);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.exceptionType);
+            }
+        }
 
     }
 }
