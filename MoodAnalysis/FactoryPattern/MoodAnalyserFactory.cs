@@ -26,7 +26,8 @@ namespace MoodAnalysis.FactoryPattern
             {
                 Type type = Type.GetType(className);
                 ConstructorInfo[] constructor = type.GetConstructors();
-                return constructor[1];
+                //return constructor[1];
+                return constructor[0];
             }
             catch (MoodAnalyserException)
             {
