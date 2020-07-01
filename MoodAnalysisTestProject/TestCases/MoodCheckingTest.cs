@@ -114,7 +114,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Improper_Class_Name_For_Parametersed_Constructor()
+        public void Improper_Class_Name_For_Parametersed_Constructor_Test()
         {
             try
             {
@@ -126,6 +126,22 @@ namespace MoodAnalysisTestProject
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, e.exceptionType);
+            }
+        }
+
+        [Test]
+        public void Improper_Constructor_For_Parameterised_Constructor_Test()
+        {
+            try
+            {
+                MoodAnalyser analysis = new MoodAnalyser("here i am in happy mood");
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                ConstructorInfo constrInfo = factory.ConstructorCreator("MoodAnalysis.MoodAnalyser");
+                object instanceOfClass = factory.InstanceCreator("MoodAnalyser", constrInfo, "here i am in happy mood");               
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CONSTRUCTOR_FOUND, e.exceptionType);
             }
         }
 
