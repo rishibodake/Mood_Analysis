@@ -5,7 +5,7 @@ namespace MoodAnalysis
 {
     public class MoodAnalyser
     {
-           
+        string message;
         static void Main(string[] args)
         {            
         }
@@ -15,7 +15,12 @@ namespace MoodAnalysis
         }     
         public MoodAnalyser(string message)
         {
-            
+            this.message = message;
+        }
+
+        public string AnalyseMood()
+        {
+            return AnalyseMood(message);
         }
         public string AnalyseMood(string message)
         {
