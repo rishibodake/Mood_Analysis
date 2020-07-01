@@ -103,8 +103,15 @@ namespace MoodAnalysis.FactoryPattern
 
                 return e.Message;
             }
-
         }
+
+        public object CallTheMethod(string currntMood)
+        {
+            MoodAnalyser analyser = new MoodAnalyser(currntMood);
+            object generatedObject = analyser.AnalyseMood();
+            return generatedObject;
+        }
+
     }
 }
 
