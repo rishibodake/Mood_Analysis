@@ -16,7 +16,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Test_For_Sad_Mood()
+        public void Test_For_Sad_Mood_Test()
         {
             string result = analyser.AnalyseMood("I Am So Sad ");
             string mood = "SAD";
@@ -24,7 +24,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Test_For_Happy_Mood()
+        public void Test_For_Happy_Mood_Test()
         {
             string result = analyser.AnalyseMood("I am Happy");
             string mood = "HAPPY";
@@ -32,7 +32,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Test_For_Null_Response()
+        public void Test_For_Null_Response_Test()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Test_For_Empty_Message()
+        public void Test_For_Empty_Message_Test()
         {
             try
             {
@@ -63,7 +63,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Mood_Analyser_Contructor_Checker()
+        public void Mood_Analyser_Contructor_Checker_Test()
         {          
             MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
             ConstructorInfo constrInfo = factory.ConstructorCreator();
@@ -72,7 +72,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Improper_Class_Haandeling()
+        public void Improper_Class_Haandeling_Test()
         {
             try
             {               
@@ -88,7 +88,7 @@ namespace MoodAnalysisTestProject
         }
 
         [Test]
-        public void Improper_Constructor_Haandeling()
+        public void Improper_Constructor_Haandeling_Test()
         {
             try
             {
@@ -102,6 +102,8 @@ namespace MoodAnalysisTestProject
                 Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_CONSTRUCTOR_FOUND, e.exceptionType);
             }
         }
+
+       
 
 
     }
