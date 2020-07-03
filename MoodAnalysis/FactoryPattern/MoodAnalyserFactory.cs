@@ -14,9 +14,9 @@ namespace MoodAnalysis.FactoryPattern
                 ConstructorInfo[] constructor = type.GetConstructors();
                 return constructor[0];
             }
-            catch (MoodAnalyserException)
+            catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND,e.Message);
             }
         }
 
@@ -29,9 +29,9 @@ namespace MoodAnalysis.FactoryPattern
                 //return constructor[1];
                 return constructor[0];
             }
-            catch (MoodAnalyserException)
+            catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, e.Message); 
             }
         }
 
@@ -52,9 +52,9 @@ namespace MoodAnalysis.FactoryPattern
                 }
                 return constructor[0];
             }
-            catch (MoodAnalyserException)
+            catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, e.Message); 
             }
         }
      
@@ -106,37 +106,30 @@ namespace MoodAnalysis.FactoryPattern
             }
         }
 
-       
-        public object CallTheMethod(string currntMood)
-        {           
-            MoodAnalyser analyser = new MoodAnalyser(currntMood);
-            object generatedObject = analyser.AnalyseMood();
-            return generatedObject;
-        }
 
-        public MethodInfo CreateMethod()
+        public bool InvokeMoodAnalyser()
         {
             try
             {
                 Type type = typeof(E);
-                MethodInfo[] method = type.GetMethods();
-                return method[0];
+                object instance = Activator.CreateInstance(type, "I am in Happy Mood");
+
+                MethodInfo method = type.GetMethod("AnalyseMood1");
+                MethodInfo method2 = type.GetMethod("AnalyseMood");
+
+                method.Invoke(instance, null);
+                method2.Invoke(instance, new object[] { "Happy" });
+
+                return true;
             }
-            catch (MoodAnalyserException)
+            catch(MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, "No such METHOD found");
+                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.Message);
             }
         }
 
-        public object MethodChecker(MethodInfo methodInfo)
-        {
-            Type type = typeof(E);
-            if(methodInfo != type.GetMethods()[0])
-            {
-                throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, "No Method Found");
-            }
-            return null;
-        }
+
+
 
     }
 }

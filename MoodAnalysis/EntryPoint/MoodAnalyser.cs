@@ -1,8 +1,6 @@
-﻿using MoodAnalysis.FactoryPattern;
-using System;
-
-namespace MoodAnalysis
+﻿namespace MoodAnalysis
 {
+    using System;
     public class MoodAnalyser
     {
         string message;
@@ -18,10 +16,12 @@ namespace MoodAnalysis
             this.message = message;
         }
 
-        public string AnalyseMood()
+        public string AnalyseMood1()
         {
-            return AnalyseMood(message);
+            return this.AnalyseMood(message);
         }
+       
+
         public string AnalyseMood(string message)
         {
             try
@@ -53,5 +53,6 @@ namespace MoodAnalysis
                 return e.Message;
             }
         }
+       
     }
 }

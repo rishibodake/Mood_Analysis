@@ -120,11 +120,11 @@ namespace MoodAnalysisTestProject
             try
             {
                 string message = "here i am in happy mood";
-                string className = "Mood";
+                string imProperClassName = "Mood";
                 MoodAnalyser analysis = new MoodAnalyser(message);
                 MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
                 ConstructorInfo constrInfo = factory.ConstructorCreator(1);
-                object instanceOfClass = factory.InstanceCreator(className, constrInfo,message);               
+                object instanceOfClass = factory.InstanceCreator(imProperClassName, constrInfo,message);               
             }
             catch (MoodAnalyserException e)
             {
@@ -138,8 +138,8 @@ namespace MoodAnalysisTestProject
             try
             {
                 string message = "here i am in happy mood";
-                string imProperConstructor = "MoodAnalysis.MoodAnalyser";
                 string className = "MoodAnalyser";
+                string imProperConstructor = "MoodAnalysis.MoodAnalyser";
                 MoodAnalyser analysis = new MoodAnalyser(message);
                 MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
                 ConstructorInfo constrInfo = factory.ConstructorCreator(imProperConstructor);
@@ -154,26 +154,13 @@ namespace MoodAnalysisTestProject
         [Test]
         public void Call_Method_Using_Reflection_Test()
         {
-            string latestMood = "HAPPY";
+           
             MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-            object genratedObject = factory.CallTheMethod(latestMood);
-            Assert.AreEqual(latestMood, genratedObject);
+            bool checker = factory.InvokeMoodAnalyser();
+            Assert.AreEqual(true, checker);
         }
+      
 
-        [Test]
-        public void Improper_Method_Handeling()
-        {
-            try
-            {
-                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-                MethodInfo methodInfo = factory.CreateMethod();
-                object returndObject = factory.MethodChecker(methodInfo);
-            }
-            catch(MoodAnalyserException e)
-            {
-                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.exceptionType);
-            }
-        }
-
+      
     }
 }
