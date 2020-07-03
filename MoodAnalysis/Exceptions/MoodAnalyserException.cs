@@ -19,8 +19,7 @@ namespace MoodAnalysis
        
 
         public MoodAnalyserException(TypeOfException typeOfException, string message) : base(message)
-        {
-            
+        {            
             this.message = message;
         }
 

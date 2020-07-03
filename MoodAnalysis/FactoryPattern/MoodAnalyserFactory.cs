@@ -133,6 +133,16 @@ namespace MoodAnalysis.FactoryPattern
             }
         }
 
+        public dynamic ChangeTheMood(string mood)
+        {
+            Type type = typeof(E);
+            dynamic change_mood = Activator.CreateInstance(type, mood);
+            MethodInfo method = type.GetMethod("AnalyseMood");
+
+            dynamic value = method.Invoke(change_mood, new object[] { mood });
+            return value;
+        }
+
 
 
 

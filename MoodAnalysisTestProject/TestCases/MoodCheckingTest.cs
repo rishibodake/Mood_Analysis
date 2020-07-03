@@ -174,6 +174,15 @@ namespace MoodAnalysisTestProject
             }
             
         }
+
+        [Test]
+        public void Change_Mood_Dynamically()
+        {
+            MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+            dynamic result = factory.ChangeTheMood("Sad");
+            Assert.AreEqual("SAD", result);
+
+        }
       
 
       
