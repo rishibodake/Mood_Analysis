@@ -156,8 +156,23 @@ namespace MoodAnalysisTestProject
         {
            
             MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-            bool checker = factory.InvokeMoodAnalyser();
+            bool checker = factory.InvokeMethods("AnalyseMood","Happy");
             Assert.AreEqual(true, checker);
+        }
+        [Test]
+        public void Improper_Method_Should_Throw_Exception()
+        {
+            try
+            {
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                bool checker = factory.InvokeMethods("Mood",null);
+                Assert.AreEqual(true, checker);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.Message);
+            }
+            
         }
       
 

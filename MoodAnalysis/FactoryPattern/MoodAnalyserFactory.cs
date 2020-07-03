@@ -107,20 +107,25 @@ namespace MoodAnalysis.FactoryPattern
         }
 
 
-        public bool InvokeMoodAnalyser()
+        public bool InvokeMethods(string method_name,string message)
         {
             try
             {
                 Type type = typeof(E);
-                object instance = Activator.CreateInstance(type, "I am in Happy Mood");
-
-                MethodInfo method = type.GetMethod("AnalyseMood1");
-                MethodInfo method2 = type.GetMethod("AnalyseMood");
-
-                method.Invoke(instance, null);
-                method2.Invoke(instance, new object[] { "Happy" });
-
-                return true;
+                if(message != null)
+                {
+                    object instance = Activator.CreateInstance(type, "I am in Happy Mood");
+                    MethodInfo method2 = type.GetMethod(method_name);
+                    method2.Invoke(instance, new object[] { message });
+                    return true;
+                }
+                else
+                {
+                    object instance = Activator.CreateInstance(type);
+                    MethodInfo method = type.GetMethod("AnalyseMood1");
+                    method.Invoke(instance, null);
+                    return true; ;
+                }
             }
             catch(MoodAnalyserException e)
             {
