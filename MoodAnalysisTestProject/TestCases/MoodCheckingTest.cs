@@ -170,7 +170,7 @@ namespace MoodAnalysisTestProject
             }
             catch(MoodAnalyserException e)
             {
-                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.Message);
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NO_METHOD_FOUND, e.exceptionType);
             }
             
         }
@@ -179,9 +179,23 @@ namespace MoodAnalysisTestProject
         public void Change_Mood_Dynamically()
         {
             MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
-            dynamic result = factory.ChangeTheMood("Sad");
-            Assert.AreEqual("SAD", result);
+            dynamic result = factory.ChangeTheMood("Happy");
+            Assert.AreEqual("HAPPY", result);
+        }
 
+        [Test]
+        public void Null_Value_Should_Throw_Exception()
+        {
+            try
+            {
+                MoodAnalyserFactory<MoodAnalyser> factory = new MoodAnalyserFactory<MoodAnalyser>();
+                dynamic result = factory.ChangeTheMood(null);
+                Assert.AreEqual("HAPPY", result);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.TypeOfException.NULL_POINTER_EXCEPTION, e.exceptionType);
+            }
         }
       
 
