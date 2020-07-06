@@ -197,8 +197,5 @@ namespace MoodAnalysisTestProject
                 Assert.AreEqual(MoodAnalyserException.TypeOfException.NULL_POINTER_EXCEPTION, e.exceptionType);
             }
         }
-      
-
-      
     }
 }

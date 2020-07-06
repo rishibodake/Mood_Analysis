@@ -6,11 +6,11 @@ namespace MoodAnalysis.FactoryPattern
 {
     public class MoodAnalyserFactory<E>
     {
+        Type type = typeof(E);
         public ConstructorInfo ConstructorCreator()
         {
             try
-            {
-                Type type = typeof(E);               
+            {              
                 ConstructorInfo[] constructor = type.GetConstructors();
                 return constructor[0];
             }
@@ -38,9 +38,7 @@ namespace MoodAnalysis.FactoryPattern
         public ConstructorInfo ConstructorCreator(int numberOfParameters)
         {
             try
-            {
-                Type type = typeof(E);
-                
+            {               
                 ConstructorInfo[] constructor = type.GetConstructors();
                 foreach(ConstructorInfo index in constructor)
                 {
@@ -62,8 +60,7 @@ namespace MoodAnalysis.FactoryPattern
         public object InstanceCreator(string className, ConstructorInfo constructor)
         {
             try
-            {
-                Type type = typeof(E);              
+            {             
                 if (className != type.Name)
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
@@ -87,7 +84,6 @@ namespace MoodAnalysis.FactoryPattern
         {
             try
             {
-                Type type = typeof(E);
                 if (className != type.Name)
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NO_CLASS_FOUND, "No such class found");
@@ -111,7 +107,6 @@ namespace MoodAnalysis.FactoryPattern
         {
             try
             {
-                Type type = typeof(E);
                 if(message != null)
                 {
                     object instance = Activator.CreateInstance(type, "I am in Happy Mood");
@@ -137,9 +132,9 @@ namespace MoodAnalysis.FactoryPattern
         {
             try
             {
-                Type type = typeof(E);
+                
                 dynamic change_mood = Activator.CreateInstance(type, mood);
-                MethodInfo method = type.GetMethod("AnalyseMood");
+                MethodInfo method = type.GetMethod("AnalyseMood");                           
                 if (mood == null)
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.TypeOfException.NULL_POINTER_EXCEPTION, "Mood Should Not Null");

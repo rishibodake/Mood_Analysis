@@ -7,10 +7,11 @@
         static void Main(string[] args)
         {            
         }
+
         public MoodAnalyser()
         {
-
         }     
+
         public MoodAnalyser(string message)
         {
             this.message = message;
